@@ -1,7 +1,7 @@
 from .models import *
 from datetime import datetime
 from django.utils.translation import gettext_lazy as _
-from django.forms import ModelForm, DateInput, Select, TextInput, ClearableFileInput
+from django.forms import ModelForm, DateInput, Select, TextInput
 
 
 class EmployeForm(ModelForm):
@@ -23,7 +23,6 @@ class EmployeForm(ModelForm):
             'date_naissance': DateInput(format=('%d/%m/%Y'),
                                         attrs={'class': 'form-control', 'placeholder': 'Select a date',
                                                'type': 'date', 'min': '1940-01-01', 'max': '2012-12-31'}),
-             'photo': ClearableFileInput(attrs={'multiple': True, 'accept': 'image/*'}),
         }
 
 
