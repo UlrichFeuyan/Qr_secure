@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Liste des employés{% endblock title %}
+
+{% block special_css %}
+<link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+{% endblock special_css %}
+
+{% block special_js %}
+<!-- Page level plugins -->
+<script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+<!-- Page level custom scripts -->
+<script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+{% endblock special_js %}
+
+
+{% block sidebar %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'personnel:home' %}">
+        <div class="sidebar-brand-icon">
+            <img alt="logo" src="{% static 'img/logo_white.png' %}" width="60"/>
+        </div>
+        <div class="sidebar-brand-text mx-3">Qr Secure</div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'personnel:home' %}">
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">Personnel</div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item active">
+        <a aria-controls="collapseUtilities" aria-expanded="true" class="nav-link" data-target="#collapseUtilities"
+           data-toggle="collapse"
+           href="#">
+            <i class="fas fa-money-check"></i>
+            <span>Employés</span>
+        </a>
+        <div aria-labelledby="headingUtilities" class="collapse show" data-parent="#accordionSidebar"
+             id="collapseUtilities">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion des employés</h6>
+                <a class="collapse-item" href="{% url 'personnel:create_employe' %}">Ajouter un employé</a>
+                <a class="collapse-item active" href="{% url 'personnel:list_employe' %}">Liste des employés</a>
+            </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Nav Item - Qr Scanner -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'personnel:home' %}">
+            <i class="fas fa-qrcode"></i>
+            <span>Qr Scanner</span>
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+{% endblock sidebar %}
+
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Employés Enregistrés</h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Liste des employés</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table cellspacing="0" class="table table-bordered" id="dataTable" width="100%">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Département</th>
+                    <th>Poste</th>
+                    <th>Numéro de CNI</th>
+                    <th>Date de Naissance</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for employe in employes %}
+                <tr>
+                    <td>{{ employe.name }}</td>
+                    <td>{{ employe.departement }}</td>
+                    <td>{{ employe.poste }}</td>
+                    <td>{{ employe.ncni }}</td>
+                    <td>{{ employe.date_naissance }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

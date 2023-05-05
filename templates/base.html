@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Agent Deposite - {% block title %}Home{% endblock title %}</title>
+    <title>QrSecure - {% block title %}Home{% endblock title %}</title>
     <!-- Custom fonts for this template-->
     <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
     <link href=" {% static 'vendor/fontawesome-free/css/all.min.css' %} " rel="stylesheet" type="text/css">
@@ -29,14 +29,17 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href=" {% url 'agent_deposit:home' %} ">
-                <div class="sidebar-brand-text mx-3">AGENT DEPOSIT</div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'personnel:home' %}">
+                <div class="sidebar-brand-icon rotate-n-15">
+
+                </div>
+                <div class="sidebar-brand-text mx-3">QrSecure</div>
             </a>
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href=" {% url 'agent_deposit:home' %} ">
+                <a class="nav-link" href="#">
                     <i class="fas fa-home"></i>
                     <span>Accueil</span>
                 </a>
@@ -44,45 +47,20 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
             <!-- Heading -->
-            <div class="sidebar-heading">Transactions</div>
+            <div class="sidebar-heading">Personnel</div>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <i class="fas fa-money-check"></i>
-                    <span>Dépots</span>
+                    <span>Employés</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar" style="">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Modes de paiements</h6>
-                        <a class="collapse-item" href=" {% url 'agent_deposit:liquide' %} ">Versement Espèce</a>
-                        <a class="collapse-item" href=" {% url 'agent_deposit:virement' %} ">Virement</a>
-                        <a class="collapse-item" href=" {% url 'agent_deposit:cheque' %} ">Remise Chèque</a>
+                        <h6 class="collapse-header">Gestion des employés</h6>
+                        <a class="collapse-item" href="#">ajouter un employé</a>
+                        <a class="collapse-item" href="#">liste des employés</a>
                     </div>
                 </div>
-            </li>
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href=" {% url 'agent_deposit:retrait' %} ">
-                    <i class="fas fa-money-bill-wave"></i>
-                    <span>Retraits</span>
-                </a>
-            </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Heading -->
-            <div class="sidebar-heading">Retracement</div>
-            <!-- Nav Item - Pages Collapse Menu -->
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href=" {% url 'agent_deposit:evenement' %} ">
-                    <i class="fas fa-history"></i>
-                    <span>Évenements</span></a>
-            </li>
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href=" {% url 'agent_deposit:historique' %} ">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Historique</span></a>
             </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -105,12 +83,10 @@
                     </button>
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <img src="{% static 'img/logo_no_bg.png' %}" width="220px" alt="logo">
                     </form>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item"><img src="{% static 'img/logoMtnMomo.png' %} " alt="logo de Mtn Mobile Money" width="230px"> </li>
                         <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
@@ -133,7 +109,7 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Opérateur </span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Admin </span>
                                 <img class="img-profile rounded-circle" src=" {% static 'img/undraw_profile.svg' %} ">
                             </a>
                             <!-- Dropdown - User Information -->

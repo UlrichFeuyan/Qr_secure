@@ -9,8 +9,9 @@ SEXE_CHOICES = [
 
 class CustomUser(AbstractUser):
     sex = models.CharField(max_length=15, choices=SEXE_CHOICES, null=True)
-    phone = models.CharField(max_length=35, null=True)
+    phone = models.CharField(max_length=50, null=True)
+    date_naissance = models.DateTimeField(null=True, blank=True)
 
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)

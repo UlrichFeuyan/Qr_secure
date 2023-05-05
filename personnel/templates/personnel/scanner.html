@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Enregistrer un employe{% endblock title %}
+
+{% block special_css %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" rel="stylesheet"/>
+{% endblock special_css %}
+
+{% block special_js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+<script src=" {% static 'js/international_phone_number.js' %} "></script>
+{% endblock special_js %}
+
+{% block sidebar %}
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{% url 'personnel:home' %}">
+        <div class="sidebar-brand-icon">
+            <img alt="logo" src="{% static 'img/logo_white.png' %}" width="60"/>
+        </div>
+        <div class="sidebar-brand-text mx-3">Qr Secure</div>
+    </a>
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'personnel:home' %}">
+            <i class="fas fa-home"></i>
+            <span>Accueil</span>
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    <!-- Heading -->
+    <div class="sidebar-heading">Personnel</div>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item active">
+        <a aria-controls="collapseUtilities" aria-expanded="true" class="nav-link" data-target="#collapseUtilities"
+           data-toggle="collapse"
+           href="#">
+            <i class="fas fa-money-check"></i>
+            <span>Employés</span>
+        </a>
+        <div aria-labelledby="headingUtilities" class="collapse show" data-parent="#accordionSidebar"
+             id="collapseUtilities">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion des employés</h6>
+                <a class="collapse-item active" href="{% url 'personnel:create_employe' %}">Ajouter un employé</a>
+                <a class="collapse-item" href="{% url 'personnel:list_employe' %}">Liste des employés</a>
+            </div>
+        </div>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Nav Item - Qr Scanner -->
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'personnel:home' %}">
+            <i class="fas fa-qrcode"></i>
+            <span>Qr Scanner</span>
+        </a>
+    </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>
+<!-- End of Sidebar -->
+{% endblock sidebar %}
+
+{% block content %}
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Scanner de Code Qr</h1>
+<div class="row justify-content-center">
+    <script src="{% static 'js/html5-qrcode.min.js' %}"></script>
+    <style>
+      .result{
+        background-color: green;
+        color:#fff;
+        padding:20px;
+      }
+      .row{
+        display:flex;
+      }
+
+    </style>
+    <div class="col-md-6 col-sm-3">
+        <div class="col">
+            <div id="reader" style="width:600px;"></div>
+        </div>
+        <div class="col" style="padding:30px;">
+            <div class="text-center" id="result"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    function onScanSuccess(qrCodeMessage) {
+        lien = qrCodeMessage.split(" ")[1]
+        document.getElementById('result').innerHTML = '<p>'+qrCodeMessage+'</p><a href="'+ lien +'"><button class="btn btn-secondary">valider</button></a>';
+    }
+    function onScanError(errorMessage) {
+      //handle scan error
+    }
+    var html5QrcodeScanner = new Html5QrcodeScanner(
+        "reader", { fps: 30, qrbox: 250 });
+    html5QrcodeScanner.render(onScanSuccess, onScanError);
+
+    </script>
+</div>
+{% endblock content %}
